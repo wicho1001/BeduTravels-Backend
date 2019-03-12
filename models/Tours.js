@@ -1,6 +1,4 @@
-const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema
 
 const tourSchema = new Schema({
   title: {
@@ -84,4 +82,3 @@ const tourSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('tour', tourSchema)

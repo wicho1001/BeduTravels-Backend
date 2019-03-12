@@ -3,16 +3,36 @@ const app = express()
 
 const PORT = 3000
 
-const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
-const TourRoutes = require('./routes/Tours')
+const Sequelize = require('sequelize')
 
-mongoose.connect('mongodb://localhost:27017/bedutravels', { useNewUrlParser: true }, () => console.log('Conectado a BeduTravelsDB'))
+const sequelize = new Sequelize('database', 'username', 'password', {
+  host: 'localhost',
+  dialect: 'mysql' | 'sqlite' | 'postgres' | 'mssql',
+  operatorsAliases: false,
+
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+
+  // SQLite only
+  storage: 'path/to/database.sqlite'
+})
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Estoy conectado a BedutravelsDB')
+  })
+  .catch(err => {
+    console.error('No puedo conectarme :C', err)
+  })
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
-app.use('/tours', TourRoutes)
 
 app.listen(PORT, () => console.log(`Escuchando en el http://localhost:${PORT}`))
