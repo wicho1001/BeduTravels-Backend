@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
+const RouteItem = new Schema({})
+
 const tourSchema = new Schema({
   title: {
     type: String,
@@ -64,23 +66,8 @@ const tourSchema = new Schema({
     default: new Date()
   },
   route: {
-    type: Object,
-    default: {},
-    id_1: {
-      type: String
-    },
-    id_2: {
-      type: String
-    },
-    id_3: {
-      type: String
-    },
-    id_4: {
-      type: String
-    },
-    id_5: {
-      type: String
-    }
+    type: [RouteItem],
+    default: []
   }
 })
 
