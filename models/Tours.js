@@ -66,8 +66,7 @@ const tourSchema = new Schema({
     default: new Date()
   },
   route: {
-    type: [RouteItem],
-    default: []
+    type: [RouteItem]
   }
 })
 

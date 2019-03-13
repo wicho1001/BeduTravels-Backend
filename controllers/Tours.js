@@ -13,9 +13,9 @@ function create (req, res, next) {
 function findAll (req, res, next) {
   TourModel.find({}, (err, Tours) => {
     if (err) {
-      res.status(404).json({ status: 'error', message: 'Usuario no encontrados' })
+      res.status(404).json({ status: 'error', message: 'Tours no encontrados' })
     }
-    res.status(200).json({ status: 'success', message: 'usuarios encontrados', data: Tours })
+    res.status(200).json({ status: 'success', message: 'Tours encontrados', data: Tours })
   })
 }
 
