@@ -20,7 +20,7 @@ function findAll (req, res, next) {
 }
 
 function findById (req, res, next) {
-  TourModel.find({ _id: req.params.id }, (err, Tour) => {
+  TourModel.findOne({ _id: req.params.id }, (err, Tour) => {
     if (err) {
       res.status(404).json({ status: 'error', message: 'No se encontro Tour', data: null })
     }
@@ -38,9 +38,19 @@ function removeTour (req, res, next) {
   })
 }
 
+function updateTour (req, res, next) {
+  TourModel.findOneAndUpdate({_id: req.params.id}, {$set: req.body, updatedAt: Date.now() } ,  (err, tour) => {
+    if (err) {
+      res.status(400).json({ status: 'error', message: err.message})
+    }
+    res.status(200).json({status:'success', message: `El tour ${tour.title} ha sido modificado del valor ${JSON.stringify(req.body)}`}) 
+  } )
+}
+
 module.exports = {
   create,
   findAll,
   removeTour,
-  findById
+  findById,
+  updateTour
 }
