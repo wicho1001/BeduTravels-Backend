@@ -6,11 +6,11 @@ const APP_PORT = process.env.APP_PORT || 3000
 
 // Dependecies y/o modelos
 
+const cors = require('cors')
 const createError = require('http-errors')
 const mongoose = require('mongoose')
 const TourRoutes = require('./routes/Tours')
 const APP_MONGO_URI = process.env.APP_MONGO_URI
-
 // conexion mongoose
 
 mongoose.connect(APP_MONGO_URI, { useNewUrlParser: true })
@@ -21,7 +21,14 @@ mongoose.connect(APP_MONGO_URI, { useNewUrlParser: true })
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
+app.use(cors())
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '0.0.0.0')
+  res.header('Access-Control-Allow-Credentials', 'true')
+  res.header('Content-Type', 'application/x-www-form-urlencoded')
+  res.header('Access-Control-Request-Method: POST')
+  next()
+})
 // app.use((req, res, next) => {
 //   next(createError(404))
 // })
