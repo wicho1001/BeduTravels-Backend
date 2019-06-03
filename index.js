@@ -22,19 +22,23 @@ mongoose.connect(APP_MONGO_URI, { useNewUrlParser: true })
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use((req, res, next) => {
-  next(createError(404))
-})
+// app.use((req, res, next) => {
+//   next(createError(404))
+// })
 
-app.use((err, req, res, next) => {
-  const statusCode = err.status || 500
-  return res.status(statusCode).json({
-    code: statusCode,
-    message: err.message
-  })
-})
+// app.use((err, req, res, next) => {
+//   const statusCode = err.status || 500
+//   return res.status(statusCode).json({
+//     code: statusCode,
+//     message: err.message
+//   })
+// })
 
 app.use('/tours', TourRoutes)
+
+app.get('/armando', (req, res, next) => {
+  res.send(console.log(req))
+})
 
 // listen
 

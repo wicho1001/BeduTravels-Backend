@@ -19,6 +19,15 @@ function findAll (req, res, next) {
   })
 }
 
+function findById (req, res, next) {
+  TourModel.find({ _id: req.params.id }, (err, Tour) => {
+    if (err) {
+      res.status(404).json({ status: 'error', message: 'No se encontro Tour', data: null })
+    }
+    res.status(200).json({ status: 'success', message: 'Tour encontrado', data: Tour })
+  })
+}
+
 function removeTour (req, res, next) {
   TourModel.findOne({ _id: req.params.id }, (err, tour) => {
     if (err) {
@@ -32,5 +41,6 @@ function removeTour (req, res, next) {
 module.exports = {
   create,
   findAll,
-  removeTour
+  removeTour,
+  findById
 }
