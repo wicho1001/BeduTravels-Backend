@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 app.use('/tours', TourRoutes)
 
 app.get('/', (req, res, next) => {
-  res.status(200).json({ status: 'success', message: 'Ya estoy arriba' })
+  res.send('Hola mundo')
 })
 
 // listen
