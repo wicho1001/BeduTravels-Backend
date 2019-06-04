@@ -28,5 +28,9 @@ app.use(function (req, res, next) {
 
 app.use('/tours', TourRoutes)
 
+app.get('/', (req, res, next) => {
+  res.status(200).json({ status: 'success', message: 'Ya estoy arriba' })
+})
+
 // listen
 app.listen(APP_PORT, () => console.log(`Escuchando en el http://localhost:${APP_PORT}`))
