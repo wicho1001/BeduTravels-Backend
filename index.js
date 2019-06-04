@@ -1,7 +1,7 @@
 // Express
 const express = require('express')
 const app = express()
-const APP_PORT = 3000
+const APP_PORT = process.env.PORT || 3000
 
 // Dependecies y/o modelos
 const cors = require('cors')
