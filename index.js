@@ -19,10 +19,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '0.0.0.0')
+  res.header('Access-Control-Allow-Origin', '0.0.0.0/0', 'http://localhost:3000/')
   res.header('Access-Control-Allow-Credentials', 'true')
-  res.header('Content-Type', 'application/x-www-form-urlencoded')
-  res.header('Access-Control-Request-Method: POST')
+  res.header('Content-Type', 'application/json')
+  res.header('Access-Control-Request-Method: GET, POST, PUT, PATCH, DELETE')
   next()
 })
 
